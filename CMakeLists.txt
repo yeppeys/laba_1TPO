@@ -3,8 +3,8 @@ project(lr1_project)
 
 set(CMAKE_CXX_STANDARD 17)
 
-# Добавляем все исходные файлы
-add_executable(lr1_project src/lr1.cpp)
+# Добавляем все исходные файлы для библиотеки
+add_library(lr1_library src/lr1.cpp)
 
 # Тесты
 add_executable(runTests tests/lr1_test.cpp)
@@ -19,6 +19,6 @@ enable_testing()
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
-target_link_libraries(runTests ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES} pthread)
+target_link_libraries(runTests lr1_library ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES} pthread)
 
 add_test(NAME runTests COMMAND runTests)
