@@ -16,12 +16,17 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up C++ environment
-        uses: aminya/setup-cpp@v1
-        with:
-          compiler: g++-10
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++-10 cmake
 
-      - name: Install dependencies
-        run: sudo apt-get install -y cmake libgtest-dev
+      - name: Install Google Test
+        run: |
+          sudo apt-get install -y libgtest-dev
+          cd /usr/src/gtest
+          sudo cmake CMakeLists.txt
+          sudo make
+          sudo cp *.a /usr/lib
 
       - name: Build and run tests
         run: |
@@ -30,4 +35,3 @@ jobs:
           cmake ..
           cmake --build .
           ctest --output-on-failure
-

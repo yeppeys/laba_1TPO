@@ -15,6 +15,7 @@ include_directories(${CMAKE_SOURCE_DIR}/third_party/googletest/googletest/includ
 
 # Добавляем Google Test
 enable_testing()
-add_subdirectory(${CMAKE_SOURCE_DIR}/third_party/googletest)
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
 
-target_link_libraries(lr1_project gtest gtest_main)
+target_link_libraries(lr1_project ${GTEST_LIBRARIES} pthread)
