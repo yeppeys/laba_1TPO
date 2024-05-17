@@ -14,6 +14,8 @@ inline bool checkOddDigitsIn(int number){
     return true;
 }
 
+
+
 inline void funcForResult(Data &data, int &element){
     if (checkOddDigitsIn(element))
         data.result.push_back(data.sum);
